@@ -1,0 +1,76 @@
+{
+    "$schema": "https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.0",
+    "version": "1.0.0",
+    "id": "2da22772-9641-4887-b459-37e5bbfa3198",
+    "packageName": "com.example.sakkuruapp",
+    "developer": {
+        "name": "Sakkuru",
+        "websiteUrl": "https://github.com/sakkuru/simple-Teams-app-nodejs",
+        "privacyUrl": "https://github.com/sakkuru/simple-Teams-app-nodejs",
+        "termsOfUseUrl": "https://github.com/sakkuru/simple-Teams-app-nodejs"
+    },
+    "name": {
+        "short": "Sakkuru App"
+    },
+    "description": {
+        "short": "Simple Teams App Node.js",
+        "full": "Simple Teams App Node.js"
+    },
+    "icons": {
+        "outline": "icon.png",
+        "color": "icon.png"
+    },
+    "accentColor": "#c3ff00",
+    "configurableTabs": [{
+        "configurationUrl": "https://simple-teams-app-nodejs.azurewebsites.net/tab/config.html",
+        "canUpdateConfiguration": true,
+        "scopes": ["team"]
+    }],
+    "staticTabs": [{
+        "entityId": "sakkuru-static-tab",
+        "name": "Static Tab",
+        "contentUrl": "https://simple-teams-app-nodejs.azurewebsites.net/tab/static.html",
+        "scopes": ["team", "personal"]
+    }],
+    "bots": [{
+        "botId": "2da22772-9641-4887-b459-37e5bbfa3198",
+        "needsChannelSelector": "true",
+        "isNotificationOnly": "false",
+        "scopes": ["team", "personal"],
+        "commandLists": [{
+                "scopes": ["team"],
+                "commands": [{
+                        "title": "Command 1",
+                        "description": "Description of Command 1"
+                    },
+                    {
+                        "title": "Command N",
+                        "description": "Description of Command N"
+                    }
+                ]
+            },
+            {
+                "scopes": ["personal"],
+                "commands": [{
+                        "title": "Personal command 1",
+                        "description": "Description of Personal command 1"
+                    },
+                    {
+                        "title": "Personal command N",
+                        "description": "Description of Personal command N"
+                    }
+                ]
+            }
+        ]
+    }],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [
+        "*.taburl.com",
+        "*.otherdomains.com",
+        "sakkuru.io"
+    ]
+}
