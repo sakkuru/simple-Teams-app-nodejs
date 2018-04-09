@@ -2,7 +2,7 @@
     "$schema": "https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json",
     "manifestVersion": "1.0",
     "version": "1.0.0",
-    "id": "2da22772-9641-4887-b459-37e5bbfa3198",
+    "id": "a58cfba4-3526-41fc-951b-c79c1bc4261c",
     "packageName": "com.example.sakkuruapp",
     "developer": {
         "name": "Sakkuru",
@@ -11,7 +11,7 @@
         "termsOfUseUrl": "https://github.com/sakkuru/simple-Teams-app-nodejs"
     },
     "name": {
-        "short": "Sakkuru App"
+        "short": "Sakkuru Teams App"
     },
     "description": {
         "short": "Simple Teams App Node.js",
@@ -23,29 +23,29 @@
     },
     "accentColor": "#c3ff00",
     "configurableTabs": [{
-        "configurationUrl": "https://simple-teams-app-nodejs.azurewebsites.net/tab/config.html",
+        "configurationUrl": "https://teams-sample-bot.azurewebsites.net/tab/config.html",
         "canUpdateConfiguration": true,
         "scopes": ["team"]
     }],
     "staticTabs": [{
         "entityId": "sakkuru-static-tab",
         "name": "Static Tab",
-        "contentUrl": "https://simple-teams-app-nodejs.azurewebsites.net/tab/static.html",
+        "contentUrl": "https://teams-sample-bot.azurewebsites.net/tab/static.html",
         "scopes": ["team", "personal"]
     }],
     "bots": [{
-        "botId": "2da22772-9641-4887-b459-37e5bbfa3198",
+        "botId": "a58cfba4-3526-41fc-951b-c79c1bc4261c",
         "needsChannelSelector": "true",
         "isNotificationOnly": "false",
         "scopes": ["team", "personal"],
         "commandLists": [{
                 "scopes": ["team"],
                 "commands": [{
-                        "title": "Command 1",
+                        "title": "Team Command 1",
                         "description": "Description of Command 1"
                     },
                     {
-                        "title": "Command N",
+                        "title": "Team Command N",
                         "description": "Description of Command N"
                     }
                 ]
