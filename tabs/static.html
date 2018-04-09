@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Simple Tab</title>
+    <title>Static Tab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/united/bootstrap.min.css" />
     <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
     <script src='https://statics.teams.microsoft.com/sdk/v1.0/js/MicrosoftTeams.min.js'></script>
@@ -16,7 +16,6 @@
     <p id="contextOutput"></p>
     <script type="text/javascript">
         microsoftTeams.initialize();
-
         $('button').click(() => {
             microsoftTeams.getContext(context => {
                 document.getElementById('contextOutput').innerHTML = JSON.stringify(context);

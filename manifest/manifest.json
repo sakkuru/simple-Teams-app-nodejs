@@ -23,20 +23,20 @@
     },
     "accentColor": "#c3ff00",
     "configurableTabs": [{
-        "configurationUrl": "https://teams-sample-bot.azurewebsites.net/tab/config.html",
+        "configurationUrl": "https://teams-sample-bot.azurewebsites.net/tabs/config.html",
         "canUpdateConfiguration": true,
         "scopes": ["team"]
     }],
     "staticTabs": [{
         "entityId": "sakkuru-static-tab",
         "name": "Static Tab",
-        "contentUrl": "https://teams-sample-bot.azurewebsites.net/tab/static.html",
+        "contentUrl": "https://teams-sample-bot.azurewebsites.net/tabs/static.html",
         "scopes": ["team", "personal"]
     }],
     "bots": [{
         "botId": "a58cfba4-3526-41fc-951b-c79c1bc4261c",
-        "needsChannelSelector": "true",
-        "isNotificationOnly": "false",
+        "needsChannelSelector": true,
+        "isNotificationOnly": false,
         "scopes": ["team", "personal"],
         "commandLists": [{
                 "scopes": ["team"],

@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 // Tab Setup
 //=========================================================
 
-app.get('/\/tab/.*/', restify.plugins.serveStatic({
+app.get('/\/tabs/.*/', restify.plugins.serveStatic({
     directory: __dirname,
     // default: './index.html'
 }));
