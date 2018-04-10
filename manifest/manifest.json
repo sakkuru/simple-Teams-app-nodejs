@@ -1,4 +1,5 @@
 {
+    "$schema": "https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json",
     "manifestVersion": "1.0",
     "version": "1.0.0",
     "id": "a58cfba4-3526-41fc-951b-c79c1bc4261c",
@@ -62,6 +63,21 @@
                 ]
             }
         ]
+    }],
+    "composeExtensions": [{
+        "botId": "a58cfba4-3526-41fc-951b-c79c1bc4261c",
+        "canUpdateConfiguration": true,
+        "commands": [{
+            "id": "search123",
+            "description": "Find a card",
+            "title": "Search",
+            "initialRun": true,
+            "parameters": [{
+                "title": "query123",
+                "name": "query",
+                "description": "Search string"
+            }]
+        }]
     }],
     "permissions": [
         "identity",
