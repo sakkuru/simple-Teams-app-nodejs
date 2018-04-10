@@ -1,5 +1,4 @@
 {
-    "$schema": "https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json",
     "manifestVersion": "1.0",
     "version": "1.0.0",
     "id": "a58cfba4-3526-41fc-951b-c79c1bc4261c",
@@ -23,14 +22,14 @@
     },
     "accentColor": "#c3ff00",
     "configurableTabs": [{
-        "configurationUrl": "https://teams-sample-bot.azurewebsites.net/tabs/config.html",
+        "configurationUrl": "https://teams-bot-sample.azurewebsites.net/tabs/config.html",
         "canUpdateConfiguration": true,
         "scopes": ["team"]
     }],
     "staticTabs": [{
         "entityId": "sakkuru-static-tab",
         "name": "Static Tab",
-        "contentUrl": "https://teams-sample-bot.azurewebsites.net/tabs/static.html",
+        "contentUrl": "https://teams-bot-sample.azurewebsites.net/tabs/static.html",
         "scopes": ["team", "personal"]
     }],
     "bots": [{
