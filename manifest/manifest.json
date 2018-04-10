@@ -1,8 +1,8 @@
 {
-    "$schema": "https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json",
-    "manifestVersion": "1.0",
+    "$schema": "https://statics.teams.microsoft.com/sdk/v1.2/manifest/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.2",
     "version": "1.0.0",
-    "id": "a58cfba4-3526-41fc-951b-c79c1bc4261c",
+    "id": "0492c398-4ec2-425e-8c37-ec7595f54208",
     "packageName": "com.example.sakkuruapp",
     "developer": {
         "name": "Sakkuru",
@@ -23,18 +23,18 @@
     },
     "accentColor": "#c3ff00",
     "configurableTabs": [{
-        "configurationUrl": "https://teams-bot-sample.azurewebsites.net/tabs/config.html",
+        "configurationUrl": "https://teams-app-sample.azurewebsites.net/tabs/config.html",
         "canUpdateConfiguration": true,
         "scopes": ["team"]
     }],
     "staticTabs": [{
         "entityId": "sakkuru-static-tab",
         "name": "Static Tab",
-        "contentUrl": "https://teams-bot-sample.azurewebsites.net/tabs/static.html",
+        "contentUrl": "https://teams-app-sample.azurewebsites.net/tabs/static.html",
         "scopes": ["team", "personal"]
     }],
     "bots": [{
-        "botId": "a58cfba4-3526-41fc-951b-c79c1bc4261c",
+        "botId": "0492c398-4ec2-425e-8c37-ec7595f54208",
         "needsChannelSelector": true,
         "isNotificationOnly": false,
         "scopes": ["team", "personal"],
@@ -65,7 +65,7 @@
         ]
     }],
     "composeExtensions": [{
-        "botId": "a58cfba4-3526-41fc-951b-c79c1bc4261c",
+        "botId": "0492c398-4ec2-425e-8c37-ec7595f54208",
         "canUpdateConfiguration": true,
         "commands": [{
             "id": "search123",
