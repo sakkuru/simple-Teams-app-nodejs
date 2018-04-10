@@ -54,27 +54,6 @@ bot.on('conversationUpdate', message => {
     }
 });
 
-const firstChoices = {
-    "Recommend for lunch": {
-        value: 'lunch',
-        title: '行列のできるタイ料理屋',
-        subtitle: 'ランチセットがコスパ良し',
-        text: '品川駅から徒歩10分くらいのところにあるタイ料理屋。トムヤムクンヌードルがおすすめ。',
-        imageURL: 'https://sakkuru.github.io/simple-bot-nodejs/images/tom.jpg',
-        button: '予約する',
-        url: 'http://example.com/'
-    },
-    "Recommend for drinking": {
-        value: 'drink',
-        title: '落ち着いた雰囲気の個室居酒屋',
-        subtitle: 'なんでも美味しいが、特に焼き鳥がおすすめ',
-        text: '品川駅から徒歩5分くらいの路地裏にひっそりある。',
-        imageURL: 'https://sakkuru.github.io/simple-bot-nodejs/images/yaki.jpg',
-        button: '予約する',
-        url: 'http://example.com/'
-    }
-};
-
 // default first dialog
 bot.dialog('/', [
     session => {
@@ -85,64 +64,7 @@ bot.dialog('/', [
 
 bot.dialog('Greeting', [
     session => {
-        session.send("This is Saki's Bot.");
-        session.beginDialog('FirstQuestion');
-    }
-]);
-
-bot.dialog('FirstQuestion', [
-    (session, results, next) => {
-        builder.Prompts.choice(session, "What can I do for you?", firstChoices, { listStyle: 3 });
-    },
-    (session, results, next) => {
-        const choice = firstChoices[results.response.entity];
-        console.log(results.response);
-
-        session.send('How about this?');
-
-        const card = new builder.HeroCard(session)
-            .title(choice.title)
-            .subtitle(choice.subtitle)
-            .text(choice.text)
-            .images([
-                builder.CardImage.create(session, choice.imageURL)
-            ])
-            .buttons([
-                builder.CardAction.openUrl(session, choice.url, choice.button)
-            ]);
-
-        const msg = new builder.Message(session).addAttachment(card);
-        session.send(msg);
-        session.beginDialog('EndDialog');
-    }
-]);
-
-bot.dialog('GetFreeText', [
-    session => {
-        builder.Prompts.text(session, "Input freely.");
-    },
-    (session, results) => {
-        console.log(results.response);
-        const res = util.getLuis(results.response).then(res => {
-            console.log('res', res);
-            // process LUIS response
-        });
-    }
-]);
-
-bot.dialog('EndDialog', [
-    session => {
-        builder.Prompts.confirm(session, "Have you solved your problem?", { listStyle: 3 });
-    },
-    (session, results) => {
-        console.log(results.response);
-        if (results.response) {
-            session.send('Thank you!');
-            session.endDialog();
-        } else {
-            session.send('I\'m sorry for the inconvenience.');
-            session.beginDialog('FirstQuestion');
-        }
+        session.send("This is Saki's Bot.\nType something.");
     }
 ]);
 
@@ -174,7 +96,6 @@ bot.dialog('Any', [
     (session, results) => {
         console.log(results.intent.matched.input);
         session.endDialog("Your input: %s", results.intent.matched.input);
-        session.beginDialog('Greeting');
     },
 ]).triggerAction({
     matches: /^.*$/i
