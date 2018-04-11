@@ -15,8 +15,5 @@
         "botbuilder-teams": "^0.1.7",
         "dotenv": "^4.0.0",
         "restify": "^6.3.2"
-    },
-    "devDependencies": {
-        "nodemon": "^1.12.1"
     }
 }
