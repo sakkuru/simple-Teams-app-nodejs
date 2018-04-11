@@ -2,6 +2,7 @@ require('dotenv').config();
 const builder = require('botbuilder');
 const restify = require('restify');
 const bodyParser = require('body-parser');
+const teams = require('botbuilder-teams');
 const app = restify.createServer();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,12 +18,15 @@ const server = app.listen(port, () => {
 });
 
 // Create chat bot
-const connector = new builder.ChatConnector({
+const connector = new teams.TeamsChatConnector({
     appId: process.env.MicrosoftAppId,
     appPassword: process.env.MicrosoftAppPassword
 });
 
 const bot = new builder.UniversalBot(connector);
+
+const stripBotAtMentions = new teams.StripBotAtMentions();
+bot.use(stripBotAtMentions);
 
 app.post('/api/messages', connector.listen());
 
@@ -73,8 +77,7 @@ bot.customAction({
 bot.dialog('Exit', [
     session => {
         console.log(session.userData);
-        session.endDialog("End with deleting dialog stack.");
-        session.beginDialog('/');
+        session.endDialog("Bye.");
     },
 ]).triggerAction({
     matches: /^exit$/i
@@ -85,7 +88,6 @@ bot.dialog('Any', [
     (session, results) => {
         console.log('input:', results.intent.matched.input);
         session.send("Your input: %s", results.intent.matched.input);
-        // session.beginDialog('Greeting');
     },
 ]).triggerAction({
     matches: /^.*$/i
