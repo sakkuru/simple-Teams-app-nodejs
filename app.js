@@ -43,17 +43,6 @@ app.get('/\/tabs/.*/', restify.plugins.serveStatic({
 // Bots Dialogs
 //=========================================================
 
-// When user joins, it begin Greeting dialog
-bot.on('conversationUpdate', message => {
-    if (message.membersAdded) {
-        message.membersAdded.forEach(identity => {
-            if (identity.id === message.address.bot.id) {
-                bot.beginDialog(message.address, 'Greeting');
-            }
-        });
-    }
-});
-
 // default first dialog
 bot.dialog('/', [
     session => {
@@ -94,7 +83,7 @@ bot.dialog('Exit', [
 // Always accepts free text input
 bot.dialog('Any', [
     (session, results) => {
-        console.log(results.intent.matched.input);
+        console.log('input:', results.intent.matched.input);
         session.endDialog("Your input: %s", results.intent.matched.input);
     },
 ]).triggerAction({
