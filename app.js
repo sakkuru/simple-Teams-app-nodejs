@@ -46,14 +46,14 @@ app.get('/\/tabs/.*/', restify.plugins.serveStatic({
 // default first dialog
 bot.dialog('/', [
     session => {
-        session.send("Hello!");
+        session.send("Hello! This is Saki's Bot.");
         session.beginDialog('Greeting');
     }
 ]);
 
 bot.dialog('Greeting', [
     session => {
-        session.send("This is Saki's Bot.\nType something.");
+        session.send("Type something.");
     }
 ]);
 
@@ -74,7 +74,7 @@ bot.dialog('Exit', [
     session => {
         console.log(session.userData);
         session.endDialog("End with deleting dialog stack.");
-        session.beginDialog('FirstQuestion');
+        session.beginDialog('/');
     },
 ]).triggerAction({
     matches: /^exit$/i
@@ -84,7 +84,8 @@ bot.dialog('Exit', [
 bot.dialog('Any', [
     (session, results) => {
         console.log('input:', results.intent.matched.input);
-        session.endDialog("Your input: %s", results.intent.matched.input);
+        session.send("Your input: %s", results.intent.matched.input);
+        // session.beginDialog('Greeting');
     },
 ]).triggerAction({
     matches: /^.*$/i
