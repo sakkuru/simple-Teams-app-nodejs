@@ -88,6 +88,20 @@ bot.dialog('Any', [
     (session, results) => {
         console.log('input:', results.intent.matched.input);
         session.send("Your input: %s", results.intent.matched.input);
+        const conversationId = session.message.address.conversation.id;
+        connector.fetchMemberList(
+            (session.message.address).serviceUrl,
+            conversationId,
+            teams.TeamsMessage.getTenantId(session.message),
+            (err, result) => {
+                if (err) {
+                    session.endDialog('There is some error');
+                } else {
+                    console.log(result);
+                    session.endDialog('Member list: %s', JSON.stringify(result));
+                }
+            }
+        );
     },
 ]).triggerAction({
     matches: /^.*$/i
