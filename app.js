@@ -28,6 +28,19 @@ const bot = new builder.UniversalBot(connector);
 const stripBotAtMentions = new teams.StripBotAtMentions();
 bot.use(stripBotAtMentions);
 
+bot.on('conversationUpdate', msg => {
+    if (!msg.membersAdded) return;
+    const members = msg.membersAdded;
+    for (var i = 0; i < members.length; i++) {
+        if (members[i].id.includes(process.env.MicrosoftAppId)) {
+            var botmessage = new builder.Message()
+                .address(msg.address)
+                .text('Hello! This is Saki\'s Bot!');
+            bot.send(botmessage, err => {});
+        }
+    }
+});
+
 app.post('/api/messages', connector.listen());
 
 app.get('/', (req, res) => {
