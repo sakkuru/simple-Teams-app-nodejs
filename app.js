@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 // Bot Setup
 //=========================================================
 
-const port = process.env.port || process.env.PORT || 3000;
+const port = process.env.port || process.env.PORT || 3999;
 const server = app.listen(port, () => {
     console.log('bot is listening on port %s', port);
 });
@@ -87,17 +87,20 @@ bot.dialog('Exit', [
 bot.dialog('Any', [
     (session, results) => {
         console.log('input:', results.intent.matched.input);
-        session.send("Your input: %s", results.intent.matched.input);
+        session.send("Your input!!!: %s", results.intent.matched.input);
+        const ids = session.message.sourceEvent;
         const conversationId = session.message.address.conversation.id;
+        const tenantId = teams.TeamsMessage.getTenantId(session.message);
         connector.fetchMemberList(
             (session.message.address).serviceUrl,
             conversationId,
-            teams.TeamsMessage.getTenantId(session.message),
+            tenantId,
             (err, result) => {
                 if (err) {
                     session.endDialog('There is some error');
                 } else {
                     console.log(result);
+                    session.send('Ids: %s', JSON.stringify(ids));
                     session.endDialog('Member list: %s', JSON.stringify(result));
                 }
             }
