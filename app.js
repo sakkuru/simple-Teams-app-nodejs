@@ -31,12 +31,14 @@ bot.use(stripBotAtMentions);
 bot.on('conversationUpdate', msg => {
     if (!msg.membersAdded) return;
     const members = msg.membersAdded;
-    for (var i = 0; i < members.length; i++) {
+    for (let i = 0; i < members.length; i++) {
+        console.log(members);
         if (members[i].id.includes(process.env.MicrosoftAppId)) {
-            var botmessage = new builder.Message()
+            const botmessage = new builder.Message()
                 .address(msg.address)
                 .text('Hello! This is Saki\'s Bot!');
             bot.send(botmessage, err => {});
+            bot.beginDialog(msg.address, 'BotAdded');
         }
     }
 });
@@ -63,14 +65,21 @@ app.get('/\/tabs/.*/', restify.plugins.serveStatic({
 // default first dialog
 bot.dialog('/', [
     session => {
-        session.send("Hello! This is Saki's Bot.");
+        session.send("Hello!");
         session.beginDialog('Greeting');
     }
 ]);
 
 bot.dialog('Greeting', [
     session => {
-        session.send("Type something.");
+        session.send("Type help.");
+    }
+]);
+
+bot.dialog('BotAdded', [
+    session => {
+        session.send("Saki\'s Bot is added!");
+        console.log('Bot is added.');
     }
 ]);
 
@@ -79,6 +88,7 @@ bot.customAction({
     matches: /^help$/i,
     onSelectAction: (session, args, next) => {
         const helpTexts = [
+            'channel: Show channel meta data.',
             'help: This help menu. Previous dialog is still continues.',
             'exit: End the dialog and back to beginning dialog.',
         ]
@@ -97,10 +107,8 @@ bot.dialog('Exit', [
 });
 
 // Always accepts free text input
-bot.dialog('Any', [
+bot.dialog('Channel', [
     (session, results) => {
-        console.log('input:', results.intent.matched.input);
-        session.send("Your input!!!: %s", results.intent.matched.input);
         const ids = session.message.sourceEvent;
         const conversationId = session.message.address.conversation.id;
         const tenantId = teams.TeamsMessage.getTenantId(session.message);
@@ -120,5 +128,5 @@ bot.dialog('Any', [
         );
     },
 ]).triggerAction({
-    matches: /^.*$/i
+    matches: /^channel.*$/i
 });
