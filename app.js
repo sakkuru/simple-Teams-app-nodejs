@@ -121,7 +121,8 @@ bot.dialog('Channel', [
                     session.endDialog('There is some error');
                 } else {
                     console.log(result);
-                    session.send('Ids: %s', JSON.stringify(ids));
+                    session.send('Conversation Id: %s', conversationId);
+                    session.send('Other Ids: %s', JSON.stringify(ids));
                     session.endDialog('Member list: %s', JSON.stringify(result));
                 }
             }
